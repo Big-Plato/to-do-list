@@ -1,7 +1,6 @@
-import { ToDo } from "./todo";
+import { Todo } from "./todo.js";
 
-export function createTodo(title, description, dueDate, priority) {
-    const todo = new ToDo(title, description, dueDate, priority);
+export function createTodo (title, description, dueDate, priority) {
+    const todo = new Todo(title, description, dueDate, priority)
     return todo;
 }
-
