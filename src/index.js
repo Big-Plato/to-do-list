@@ -4,40 +4,29 @@ import "./styles.css";
 import { createTodo } from "./createTodo.js";
 import { Todo } from "./todo.js";
 import { Project } from "./project.js";
+import { createTodoCard, createProjectSection } from "./dom.js";
+import { finishTodo } from "./finishTodo.js";
 
-const body = document.querySelector('body');
-const container = document.createElement('div');
-body.appendChild(container);
+export const todoSection = document.querySelector(".todo-section");
 
-const rebians = new createTodo('Rebians', 'Hilous', '12-07-25', 'High');
-console.log(rebians);
-console.log(rebians.description)
-console.log(rebians.dueDate)
-console.log(rebians.showTodo())
+const nav = document.querySelector("nav");
 
-const pakons = new Project('Pirous');
+const todo1 = new Todo("Louça", "Lavar a louça toda", "30-01-2025", "High");
+const todo2 = new Todo(
+  "Estudar Platão",
+  "Estudar Livro II das Leis de Platão",
+  "03-02-2025",
+  "Medium"
+);
+const todo3 = new Todo("Fazer crochê", "Costurar um biquini de cogumelos", "05-02-2025", "Low")
+createProjectSection('Rabions');
 
-console.log("O projeto se chama " + pakons.show)
-
-const nav = document.querySelector('nav');
-const ul = document.createElement('ul');
-nav.appendChild(ul);
-
-for (let i = 0; i < 20; i++) {
-    const li = document.createElement('li');
-    li.textContent = "Sanapiasnos";
-    ul.appendChild(li);
-}
-
-
-
-
-
+createTodoCard(todo1, 'Rabions');
+createTodoCard(todo2, 'Rabions');
+createTodoCard(todo3, 'Rabions');
 
 //O projeto deve criar uma ul
 //Dentro da ul irá receber o 'li' que será o todo
-
-
 
 /* Processos
 
