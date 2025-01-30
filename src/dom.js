@@ -1,34 +1,70 @@
-import { Todo } from "./todo";
-import { todoSection } from ".";
+import { todoSection } from "./index";
+import { Project } from "./project";
 
-export function createTodoCard (todo) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    todoSection.appendChild(card);
 
-    const inputCheck = document.createElement('input');
-    inputCheck.setAttribute("type", "radio");
-    const h3Title = document.createElement('h3');
-    const paraDescription = document.createElement('p');
-    const paraDate = document.createElement('p');
-    const paraPriority = document.createElement('p');
+export function createTodoCard(todo, project) {
+  
+  const projectSection = selectProjectSection(project);
+  console.log(projectSection);
+  const todoItem = document.createElement("li");
+  todoItem.classList.add("card");
+  projectSection.appendChild(todoItem);
 
-    appendTodo = (element) => {
-        card.appendChild(element);
-    }
+  const inputCheck = document.createElement("input");
+  inputCheck.classList.add("mark-todo");
 
-    textTodo = (element, text) => {
-        element.textContent = text;
-    }
+    inputCheck.addEventListener('click', () => {
+        if (inputCheck.checked) {
+            console.log('Yes');
+        } else {
+            console.log('No');
+        }
+    })
 
-    appendTodo(inputCheck);
-    appendTodo(h3Title);
-    appendTodo(paraDescription);
-    appendTodo(paraDate);
-    appendTodo(paraPriority);
+  inputCheck.setAttribute("type", "checkbox");
+  const paraTitle = document.createElement("p");
+  const divTitle = document.createElement("div");
+  divTitle.classList.add('divTitle');
+  divTitle.appendChild(inputCheck);
+  divTitle.appendChild(paraTitle);
 
-    textTodo(h3Title, todo.title);
-    textTodo(paraDescription, todo.description);
-    textTodo(paraDate, todo.dueDate);
-    textTodo(paraPriority, todo.priority);
+  const paraDescription = document.createElement("p");
+  paraDescription.classList.add('todoDescription');
+  const paraDate = document.createElement("p");
+  const paraPriority = document.createElement("p");
+  const divDatePriority = document.createElement("div");
+  divDatePriority.appendChild(paraDate);
+  divDatePriority.appendChild(paraPriority);
+  divDatePriority.classList.add("divDatePriority");
+
+
+  function textTodo(element, text) {
+    element.textContent = text;
+  }
+
+  textTodo(paraTitle, todo.title);
+  textTodo(paraDescription, todo.description);
+  textTodo(paraDate, todo.dueDate);
+  textTodo(paraPriority, todo.priority);
+
+  todoItem.appendChild(divTitle); 
+  todoItem.appendChild(paraDescription);
+  todoItem.appendChild(divDatePriority);
+
+}
+
+export function createProjectSection(projectname) {
+  const project = new Project(projectname);
+  const ul = document.createElement("ul");
+  ul.classList.add(`${projectname}`);
+  ul.classList.add('project');
+  todoSection.appendChild(ul);
+  ul.textContent = `${project.name}`;
+  console.log(ul);
+  return ul;
+}
+
+function selectProjectSection(projectname) {
+    const projectSection = document.querySelector(`.${projectname}`);
+    return projectSection;
 }
