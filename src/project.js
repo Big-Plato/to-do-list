@@ -1,11 +1,9 @@
-import { ToDo } from "./todo";
-
 export class Project {
-    constructor(name) {
-        this.name = name;
-    }
+  constructor(name) {
+    this.name = name;
+  }
 
-    get show () {
-        return `${this.name}`;
-    }
+  get show() {
+    return `${this.name}`;
+  }
 }
