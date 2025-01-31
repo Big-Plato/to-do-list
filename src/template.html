@@ -37,23 +37,23 @@
     <form id="todo-form">
       <fieldset>
         <label for="title">Title</label>
-        <input type="text" id="title" maxlength="50" placeholder="To-do">
+        <input type="text" name="title" id="title" maxlength="50" placeholder="To-do">
         <label for="description">Description</label>
-        <input type="text" id="description" maxlength="50" placeholder="Description">
+        <input type="text" name="description" id="description" maxlength="50" placeholder="Description">
         <label for="date">Date</label>
-        <input type="date" id="date">
+        <input type="date" name="date" id="date">
       </fieldset>
       <fieldset id="options">
         <label for="low">Low</label>
-        <input id="low" type="radio">
+        <input id="low" name="option" value="Low" type="radio" checked>
         <label for="medium">Medium</label>
-        <input id="medium" type="radio">
+        <input id="medium" name="option" value="Medium" type="radio">
         <label for="high">High</label>
-        <input id="high" type="radio">
+        <input id="high" name="option" value="High" type="radio">
       </fieldset>
       <fieldset>
         <label>Project</label>
-        <select id="select-project">
+        <select name="select" id="select-project">
 
         </select>
       </fieldset>
@@ -65,7 +65,7 @@
     <fieldset id="field-project">
     <button id="close-project">X</button>
     <label for="name">Project Name</label>
-    <input id="name" type="text">
+    <input id="project-name" name="project" type="text">
     <button id="submit-project">Add Project</button>
   </fieldset>
   </dialog>
