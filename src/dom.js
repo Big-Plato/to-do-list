@@ -66,6 +66,7 @@ export function createTodoCard(todo, project) {
 
 }
 
+//Create a project, that is a ul, that is appended to todoSection
 export function createProjectSection(projectname) {
   const project = new Project(projectname);
   const ul = document.createElement("ul");
@@ -73,7 +74,6 @@ export function createProjectSection(projectname) {
   ul.classList.add('project');
   todoSection.appendChild(ul);
   ul.textContent = `${project.name}`;
-  console.log(ul);
   return ul;
 }
 
@@ -99,21 +99,49 @@ closeDialogBtn2.addEventListener("click", () => {
 })
 
 submitBtn.addEventListener("click", (e) => {
-  console.log(e);
-  console.log('HIHIHIHIH')
+  e.preventDefault();
   manipulateInputData();
+  selectProjectForm();
 });
 
-function manipulateInputData () {
-  const title = document.querySelector('#title').value;
-  const description = document.querySelector('#description').value;
-  const date = document.querySelector('#date').value;
-  const check = document.querySelector("#options").value;
+export function manipulateInputData () {
+  const todoForm = document.querySelector("#todo-form");
+  const title = todoForm.title.value;
+  const description = todoForm.description.value;
+  const date = todoForm.date.value;
+  const priority = selectRadioBtn();
+  const select = selectProjectForm();
 
-  for (let i = 0; i > check.length; i++) {
-    console.log(i);
+  const arr = [title, description, date, priority, select];
+  console.log(arr);
+
+  const todo = new Todo(arr[0], arr[1], arr[2], arr[3]);
+  console.log(todo)
+  const project = select;
+  console.log(project);
+
+  createTodoCard(todo, project);
+}
+
+function selectRadioBtn () {
+  const radio = document.getElementsByName("option");
+  let radioValue;
+  for (let i = 0; i < radio.length; i++) {
+    if (radio[i].checked) {
+      radioValue = radio[i].value;
+    }
+    console.log(radioValue);
   }
-  const projectSection = document.querySelector("#select-project").value
+  return radioValue;
+}
 
-  return [ title, description, date, check ];
+function selectProjectForm () {
+  const select = document.querySelectorAll("option");
+  let optionSelected;
+  for (let i = 0; i < select.length; i++) {
+    if (select[i].selected) {
+      optionSelected = select[i].value;
+    }
+    return optionSelected;
+  }
 }
