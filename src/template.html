@@ -10,7 +10,17 @@
 <body>
   <div class="container">
     <nav class="nav">
-      <img src="assets/plato-idea.svg">
+      <img class="plato" src="assets/plato-idea.svg">
+      <div>
+        <div>
+          <img class="add todo-add" src="./assets/add.svg">
+          <h3>Add To-do</h3>
+        </div>
+        <div>
+          <img class="add project-add" src="./assets/project.svg">
+          <h3>Add Project</h3>
+        </div>
+      </div>
     </nav>
 
     <header>
@@ -20,6 +30,46 @@
     </div>
     
   </div>
+
+  <dialog id="dialog-todo">
+    <button id="close">X</button>
+    <legend>Fill the informations below to add a todo</legend>
+    <form id="todo-form">
+      <fieldset>
+        <label for="title">Title</label>
+        <input type="text" id="title" maxlength="50" placeholder="To-do">
+        <label for="description">Description</label>
+        <input type="text" id="description" maxlength="50" placeholder="Description">
+        <label for="date">Date</label>
+        <input type="date" id="date">
+      </fieldset>
+      <fieldset id="options">
+        <label for="low">Low</label>
+        <input id="low" type="radio">
+        <label for="medium">Medium</label>
+        <input id="medium" type="radio">
+        <label for="high">High</label>
+        <input id="high" type="radio">
+      </fieldset>
+      <fieldset>
+        <label>Project</label>
+        <select id="select-project">
+
+        </select>
+      </fieldset>
+      <button id="submit" type="submit">Add To-do</button>
+    </form>
+  </dialog>
+
+  <dialog id="dialog-project">
+    <fieldset id="field-project">
+    <button id="close-project">X</button>
+    <label for="name">Project Name</label>
+    <input id="name" type="text">
+    <button id="submit-project">Add Project</button>
+  </fieldset>
+  </dialog>
+
 </body>
 
 </html>
