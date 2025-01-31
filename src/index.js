@@ -11,7 +11,7 @@ export const todoSection = document.querySelector(".todo-section");
 
 const nav = document.querySelector("nav");
 
-const todo1 = new Todo("Louça", "Lavar a louça toda", "30-01-2025", "High");
+const todo1 = new Todo("Louça", "Lavar louça pra caramba nessa moléstia", "30-01-2025", "High");
 const todo2 = new Todo(
   "Estudar Platão",
   "Estudar Livro II das Leis de Platão",
@@ -20,13 +20,24 @@ const todo2 = new Todo(
 );
 const todo3 = new Todo("Fazer crochê", "Costurar um biquini de cogumelos", "05-02-2025", "Low")
 createProjectSection('Rabions');
+createProjectSection('Fifias');
 
 createTodoCard(todo1, 'Rabions');
 createTodoCard(todo2, 'Rabions');
 createTodoCard(todo3, 'Rabions');
 
-//O projeto deve criar uma ul
-//Dentro da ul irá receber o 'li' que será o todo
+const selectProject = document.querySelectorAll("ul");
+const select = document.querySelector("select");
+
+selectProject.forEach((project) => {
+  const option = document.createElement("option");
+  const classAttr = project.getAttribute('class');
+  const firstClass = classAttr.split(" ");
+  console.log(classAttr);
+  option.textContent = firstClass[0];
+  console.log(option.textContent);
+  select.appendChild(option);
+})
 
 /* Processos
 
@@ -34,5 +45,6 @@ createTodoCard(todo3, 'Rabions');
 2 - Criação da interface 
 3 - Manipulação do Dom
 4 - localStorage WEB Api
-
+5 - datefns (Fazer com que apareça no todo o tempo que falta para ser concluiído)
+6 - consertar todo para to do
 */
