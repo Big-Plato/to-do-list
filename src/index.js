@@ -9,35 +9,34 @@ import { finishTodo } from "./finishTodo.js";
 
 export const todoSection = document.querySelector(".todo-section");
 
-const nav = document.querySelector("nav");
-
-const todo1 = new Todo("Louça", "Lavar louça pra caramba nessa moléstia", "30-01-2025", "High");
+const todo1 = new Todo("Wash dishes", "Wash dishes from the yesterday dinner", "30-01-2025", "High");
 const todo2 = new Todo(
-  "Estudar Platão",
-  "Estudar Livro II das Leis de Platão",
+  "Study Plato",
+  "Read Book II of Laws",
   "03-02-2025",
   "Medium"
 );
-const todo3 = new Todo("Fazer crochê", "Costurar um biquini de cogumelos", "05-02-2025", "Low")
-createProjectSection('Rabions');
-createProjectSection('Fifias');
+const todo3 = new Todo("Market", "Go to market", "05-02-2025", "High")
+createProjectSection('Default');
 
-createTodoCard(todo1, 'Rabions');
-createTodoCard(todo2, 'Rabions');
-createTodoCard(todo3, 'Rabions');
+createTodoCard(todo1, 'Default');
+createTodoCard(todo2, 'Default');
+createTodoCard(todo3, 'Default');
 
-const selectProject = document.querySelectorAll("ul");
-const select = document.querySelector("select");
+export function projectInterval (projectname) {
+  const selectProject = projectInterval.getAttribute('class');
+  console.log(selectProject);
+  const select = document.querySelector("#select-project");
+  console.log(select);
 
-selectProject.forEach((project) => {
   const option = document.createElement("option");
-  const classAttr = project.getAttribute('class');
+  const classAttr = selectProject[i].getAttribute('class');
   const firstClass = classAttr.split(" ");
-  console.log(classAttr);
   option.textContent = firstClass[0];
-  console.log(option.textContent);
   select.appendChild(option);
-})
+}
+
+// setInterval(projectInterval, 1000);
 
 /* Processos
 
