@@ -24,15 +24,9 @@ createTodoCard(todo2, 'Default');
 createTodoCard(todo3, 'Default');
 
 export function projectInterval (projectname) {
-  const selectProject = projectInterval.getAttribute('class');
-  console.log(selectProject);
   const select = document.querySelector("#select-project");
-  console.log(select);
-
   const option = document.createElement("option");
-  const classAttr = selectProject[i].getAttribute('class');
-  const firstClass = classAttr.split(" ");
-  option.textContent = firstClass[0];
+  option.textContent = projectname;
   select.appendChild(option);
 }
 
