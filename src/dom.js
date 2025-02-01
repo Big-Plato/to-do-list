@@ -1,4 +1,4 @@
-import { todoSection } from "./index";
+import { todoSection, projectInterval } from "./index";
 import { Project } from "./project";
 import { Todo } from "./todo";
 
@@ -10,7 +10,6 @@ const closeDialogBtn = document.querySelector("#close");
 const closeDialogBtn2 = document.querySelector("#close-project");
 const submitBtn = document.querySelector("#submit");
 const submitBtnProject = document.querySelector("#submit-project");
-
 
 export function createTodoCard(todo, project) {
   
@@ -74,6 +73,7 @@ export function createProjectSection(projectname) {
   ul.classList.add('project');
   todoSection.appendChild(ul);
   ul.textContent = `${project.name}`;
+  projectInterval(projectname);
   return ul;
 }
 
@@ -82,10 +82,13 @@ function selectProjectSection(projectname) {
     return projectSection;
 }
 
+//Modals
+//Todo modal
 addTodo.addEventListener("click", () => {
   dialog.showModal();
 });
 
+//Project modal
 addProject.addEventListener("click", () => {
   dialog2.showModal();
 });
@@ -98,12 +101,20 @@ closeDialogBtn2.addEventListener("click", () => {
   dialog2.close();
 })
 
+//to-do submit form button
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
   manipulateInputData();
   selectProjectForm();
 });
 
+submitBtnProject.addEventListener("click", (e) => {
+  e.preventDefault();
+  const projectName = submitProject();
+  createProjectSection(projectName);
+})
+
+//Function to manipulate and extract data from the to-do form
 export function manipulateInputData () {
   const todoForm = document.querySelector("#todo-form");
   const title = todoForm.title.value;
@@ -123,6 +134,7 @@ export function manipulateInputData () {
   createTodoCard(todo, project);
 }
 
+//Select the radio buttons that indicates a priority of the todo
 function selectRadioBtn () {
   const radio = document.getElementsByName("option");
   let radioValue;
@@ -135,6 +147,7 @@ function selectRadioBtn () {
   return radioValue;
 }
 
+// Select the options of the select dropdown in the to-do form
 function selectProjectForm () {
   const select = document.querySelectorAll("option");
   let optionSelected;
@@ -145,3 +158,9 @@ function selectProjectForm () {
     return optionSelected;
   }
 }
+
+function submitProject () {
+  const name = document.querySelector("#project-name").value;
+   return name;
+}
+
