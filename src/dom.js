@@ -74,7 +74,7 @@ export function createProjectSection(projectname) {
   todoSection.appendChild(ul);
   ul.textContent = `${project.name}`;
   projectInterval(projectname);
-  return ul;  
+  return project;  
 }
 
 function selectProjectSection(projectname) {
@@ -105,7 +105,7 @@ closeDialogBtn2.addEventListener("click", () => {
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
   manipulateInputData();
-  selectProjectForm();
+  document.querySelector("#select-project");
 });
 
 submitBtnProject.addEventListener("click", (e) => {
@@ -121,7 +121,8 @@ export function manipulateInputData () {
   const description = todoForm.description.value;
   const date = todoForm.date.value;
   const priority = selectRadioBtn();
-  const select = selectProjectForm();
+  const select = todoForm.select.value;
+  console.log(select);  
 
   const arr = [title, description, date, priority, select];
   console.log(arr);
@@ -145,18 +146,6 @@ function selectRadioBtn () {
     console.log(radioValue);
   }
   return radioValue;
-}
-
-// Select the options of the select dropdown in the to-do form
-function selectProjectForm () {
-  const select = document.querySelectorAll("option");
-  let optionSelected;
-  for (let i = 0; i < select.length; i++) {
-    if (select[i].selected) {
-      optionSelected = select[i].value;
-    }
-    return optionSelected;
-  }
 }
 
 function submitProject () {
