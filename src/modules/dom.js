@@ -1,6 +1,7 @@
 import { todoSection, projectInterval } from "../index";
 import { Project } from "./project";
 import { Todo } from "./todo";
+import { getLocalStorage, retrieveFromLocalStorage, todos, projects } from "./localStorage"
 
 const addTodo = document.querySelector('.todo-add');
 const addProject = document.querySelector('.project-add');
@@ -16,10 +17,13 @@ export function createTodoCard(todo, project) {
   
   //Select the proper section of the project you want to add a todo, and then adds
   //a todo
-  const projectSection = selectProjectSection(project);
+  const projectSection = createProjectSection(project);
+  const selectProject = document.querySelector(`.${project}`);
+
+  console.log(selectProject);
   const todoItem = document.createElement("li");
   todoItem.classList.add("card");
-  projectSection.appendChild(todoItem);
+  selectProject.appendChild(todoItem);
 
   const inputCheck = document.createElement("input");
   inputCheck.classList.add("mark-todo");
@@ -63,23 +67,30 @@ export function createTodoCard(todo, project) {
   todoItem.appendChild(paraDescription);
   todoItem.appendChild(divDatePriority);
 
+  getLocalStorage(todo, project);
+
+
 }
 
 //Create a project, that is a ul, that is appended to todoSection
 export function createProjectSection(projectname) {
-  const project = new Project(projectname);
+  const existingProject = document.querySelector(`.${projectname}`);
+  if (existingProject) {
+    console.log(`Project '${projectname}' already exists.`);
+    return existingProject;
+  }
+
+
+
+  const project = projectname;
+  console.log(project)
   const ul = document.createElement("ul");
   ul.classList.add(`${projectname}`);
   ul.classList.add('project');
   todoSection.appendChild(ul);
-  ul.textContent = `${project.name}`;
+  ul.innerHTML = `${project}`;
   projectInterval(projectname);
   return project;  
-}
-
-function selectProjectSection(projectname) {
-    const projectSection = document.querySelector(`.${projectname}`);
-    return projectSection;
 }
 
 //Modals
@@ -105,9 +116,8 @@ closeDialogBtn2.addEventListener("click", () => {
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
   manipulateInputData();
-  document.querySelector("#select-project");
   dialog.close();
-  todoForm.reset();
+  todoForm.reset(); //erase the fields of the form after the submit button is clicked
 });
 
 //project submit button
@@ -153,4 +163,15 @@ function submitProject () {
   const name = document.querySelector("#project-name").value;
    return name;
 }
+
+function populateDivs(todos, project) {
+  console.log(project[0])
+  for (let i = 0; i < todos.length; i++) {
+      createTodoCard(todos[i], `${project[0]}`);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  populateDivs(todos, projects);
+});
 
