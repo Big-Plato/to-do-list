@@ -74,7 +74,7 @@ export function createProjectSection(projectname) {
   todoSection.appendChild(ul);
   ul.textContent = `${project.name}`;
   projectInterval(projectname);
-  return ul;
+  return ul;  
 }
 
 function selectProjectSection(projectname) {
