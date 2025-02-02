@@ -1,7 +1,7 @@
 import { todoSection, projectInterval } from "../index";
 import { Project } from "./project";
 import { Todo } from "./todo";
-import { getLocalStorage, retrieveFromLocalStorage, todos, projects } from "./localStorage"
+import { getLocalStorage, retrieveFromLocalStorage } from "./localStorage"
 
 const addTodo = document.querySelector('.todo-add');
 const addProject = document.querySelector('.project-add');
@@ -175,3 +175,11 @@ document.addEventListener('DOMContentLoaded', () => {
   populateDivs(todos, projects);
 });
 
+//Click to expand todo
+const cards = document.querySelectorAll(".card");
+
+cards.forEach((card) => {
+  card.addEventListener("click", () => {
+    card.classList.toggle("show");
+  })
+})
