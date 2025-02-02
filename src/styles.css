@@ -78,6 +78,9 @@ body {
   cursor: pointer;
 }
 
+.add:hover {
+  filter: invert(78%) sepia(11%) saturate(4011%) hue-rotate(307deg) brightness(92%) contrast(85%);}
+
 .nav ul {
   grid-row: 2 / 3;
   width: 100%;
@@ -94,7 +97,7 @@ body {
 }
 
 .nav ul li:hover {
-  background-color: var(--main-bg-color);
+  background-color: var(--main-font-color);
 }
 
 header {
@@ -118,7 +121,6 @@ header h1 {
   display: grid;
   grid-area: 2 / 2 / 5 / 5;
   grid-auto-rows: 1fr;
-  grid-template-rows: auto;
   grid-template-columns: 1fr;
   justify-items: center;
   align-items: start;
@@ -137,6 +139,17 @@ header h1 {
   margin: 10px;
   display: flex;
   justify-content: space-between;
+}
+
+.card:hover {
+  background-color: var(--main-bg-color);
+  transform: translateY(5px);
+  height: 8rem;
+  text-overflow: none;
+}
+
+.show {
+  height: 300px;
 }
 
 .card > * p {
