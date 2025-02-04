@@ -1,11 +1,11 @@
 import { todoSection, projectInterval } from "../index";
 import { Todo } from "./todo";
-import { getLocalStorage } from "./localStorage"
+import { getLocalStorage, retrieveFromLocalStorage } from "./localStorage";
 
-const addTodo = document.querySelector('.todo-add');
-const addProject = document.querySelector('.project-add');
+const addTodo = document.querySelector(".todo-add");
+const addProject = document.querySelector(".project-add");
 const dialog = document.querySelector("#dialog-todo");
-const dialog2 = document.querySelector("#dialog-project")
+const dialog2 = document.querySelector("#dialog-project");
 const closeDialogBtn = document.querySelector("#close");
 const closeDialogBtn2 = document.querySelector("#close-project");
 const submitBtn = document.querySelector("#submit");
@@ -13,12 +13,9 @@ const submitBtnProject = document.querySelector("#submit-project");
 const todoForm = document.querySelector("#todo-form");
 
 export function createTodoCard(todo, project) {
-  
   //Select the proper section of the project you want to add a todo, and then adds
   //a todo
-  const projectName = todo.project;
-  console.log(projectName)
-  const selectProject = document.querySelector(`.${project}`)
+  const selectProject = document.querySelector(`.${project}`);
   const todoItem = document.createElement("li");
   todoItem.classList.add("card");
   selectProject.appendChild(todoItem);
@@ -26,24 +23,17 @@ export function createTodoCard(todo, project) {
   const inputCheck = document.createElement("input");
   inputCheck.classList.add("mark-todo");
 
-    //Check that will be used in future to finish a todo
-    inputCheck.addEventListener('click', () => {
-        if (inputCheck.checked) {
-            console.log('Yes');
-        } else {
-            console.log('No');
-        }
-    })
+  //Check that will be used in future to finish a todo
 
   inputCheck.setAttribute("type", "checkbox");
   const paraTitle = document.createElement("p");
   const divTitle = document.createElement("div");
-  divTitle.classList.add('divTitle');
+  divTitle.classList.add("divTitle");
   divTitle.appendChild(inputCheck);
   divTitle.appendChild(paraTitle);
 
   const paraDescription = document.createElement("p");
-  paraDescription.classList.add('todoDescription');
+  paraDescription.classList.add("todoDescription");
   const paraDate = document.createElement("p");
   const paraPriority = document.createElement("p");
   const divDatePriority = document.createElement("div");
@@ -51,7 +41,7 @@ export function createTodoCard(todo, project) {
   divDatePriority.appendChild(paraPriority);
   divDatePriority.classList.add("divDatePriority");
 
-
+  // Handles textContent of an element
   function textTodo(element, text) {
     element.textContent = text;
   }
@@ -61,27 +51,65 @@ export function createTodoCard(todo, project) {
   textTodo(paraDate, todo.dueDate);
   textTodo(paraPriority, todo.priority);
 
-  todoItem.appendChild(divTitle); 
+  todoItem.appendChild(divTitle);
   todoItem.appendChild(paraDescription);
   todoItem.appendChild(divDatePriority);
+  todoItem.setAttribute("contenteditable", "plaintext-only");
+
+  let isVisible = false;
+
+  todoItem.addEventListener("click", () => {
+    todoItem.classList.toggle("show");
+
+    if (!isVisible) {
+      paraDescription.style.cssText = "overflow: visible;";
+      isVisible = true;
+    } else {
+      paraDescription.style.cssText = "overflow: hidden;";
+      isVisible = false;
+    }
+  });
 
   const button = document.createElement("button");
   button.textContent = "Delete";
   todoItem.appendChild(button);
-  button.classList.add("delete-btn")
+  button.classList.add("delete-btn");
 
-  colorPriority(todoItem, todo.priority)
+  button.addEventListener("click", () => {
+    if (confirm(`Do you really want to remove ${todo.title}?`)) {
+      todoItem.remove();
+      localStorage.removeItem(`todo_${todo.title}`);
+    }
+  });
+
+  colorPriority(todoItem, todo.priority);
   getLocalStorage(todo, todo.project);
+
+  inputCheck.addEventListener("click", () => {
+    if (inputCheck.checked) {
+      todoItem.style.cssText =
+        "text-decoration: line-through; background-color: black;";
+    } else {
+      todoItem.style.cssText = "text-decoration: none;";
+      colorPriority(todoItem, todo.priority);
+    }
+  });
 }
 
-// Delete the project of DOM
+// Delete the project of DOM and localStorage
 const deleteProject = (project) => {
+  const projectHasChild = document.querySelector(`.${project}`);
+  console.log(projectHasChild)
+  for (let i = 0; i < projectHasChild.length; i++) {
+    console.log(projectHasChild[i]);
+  }
+  if (confirm(`Do you really want to remove ${project}?`)) {
+    document.querySelector(`.${project}`).remove();
+    localStorage.removeItem(`project_${project}`);
+  }
+  window.location.reload();
 
- if (confirm(`Do you really want to remove ${project}?`)) {
-   document.querySelector(`.${project}`).remove();
-   localStorage.removeItem(`project_${project}`);
- } 
-}
+};
 
 //Create a project, that is a ul, that is appended to todoSection
 export function createProjectSection(projectname) {
@@ -94,20 +122,21 @@ export function createProjectSection(projectname) {
   const project = projectname;
   const ul = document.createElement("ul");
   ul.classList.add(`${projectname}`);
-  ul.classList.add('project');
+  ul.classList.add("project");
   todoSection.appendChild(ul);
-  ul.innerHTML = `${project}`;
+  ul.textContent = `${project}`;
   projectInterval(projectname);
 
   const button = document.createElement("button");
   button.textContent = `Delete
   Project`;
-  // button.classList.add("delete-btn");
-  // button.addEventListener("click", () => {
-  //   deleteProject(project)
-  // })
-  // ul.append(button)
-  return project;  
+  button.classList.add("delete-btn");
+  button.style.cssText = "width: 200px;"
+  button.addEventListener("click", () => {
+    deleteProject(project);
+  });
+  ul.append(button);
+  return project;
 }
 
 //Modals
@@ -127,7 +156,7 @@ closeDialogBtn.addEventListener("click", () => {
 
 closeDialogBtn2.addEventListener("click", () => {
   dialog2.close();
-})
+});
 
 //to-do submit form button
 submitBtn.addEventListener("click", (e) => {
@@ -142,11 +171,10 @@ submitBtnProject.addEventListener("click", (e) => {
   e.preventDefault();
   const projectName = submitProject();
   createProjectSection(projectName);
-})
+});
 
 //Function to manipulate and extract data from the to-do form
-export function manipulateInputData () {
-  
+export function manipulateInputData() {
   const title = todoForm.title.value;
   const description = todoForm.description.value;
   const date = todoForm.date.value;
@@ -161,7 +189,7 @@ export function manipulateInputData () {
 }
 
 //Select the radio buttons that indicates a priority of the todo
-function selectRadioBtn () {
+function selectRadioBtn() {
   const radio = document.getElementsByName("option");
   let radioValue;
   for (let i = 0; i < radio.length; i++) {
@@ -172,9 +200,9 @@ function selectRadioBtn () {
   return radioValue;
 }
 
-function submitProject () {
+function submitProject() {
   const name = document.querySelector("#project-name").value;
-   return name;
+  return name;
 }
 
 // function populateDivs(todos, project) {
@@ -185,23 +213,11 @@ function submitProject () {
 
 // Change the color of priority
 function colorPriority(todo, priority) {
-  console.log(priority)
-  if (priority === 'High') {
-    todo.style.cssText = "background-color: rgb(206, 64, 64);"
-  } else if (priority === 'Medium') {
-    todo.style.cssText = "background-color: rgb(248, 203, 68);"
-  } else if (priority === 'Low') {
-    todo.style.cssText = "background-color: rgb(72, 185, 38);"
+  if (priority === "High") {
+    todo.style.cssText = "background-color: rgb(206, 64, 64);";
+  } else if (priority === "Medium") {
+    todo.style.cssText = "background-color: rgb(248, 203, 68);";
+  } else if (priority === "Low") {
+    todo.style.cssText = "background-color: rgb(72, 185, 38);";
   }
 }
-
-// const cards = document.getElementsByTagName('li');
-// console.log(cards);
-
-// cards.forEach((card) => {
-//   card.addEventListener("click", () => {
-//     console.log("click")
-//     card.classList.toggle("show")
-//   })
-// })
-
