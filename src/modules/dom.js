@@ -108,7 +108,6 @@ const deleteProject = (project) => {
     localStorage.removeItem(`project_${project}`);
   }
   window.location.reload();
-
 };
 
 //Create a project, that is a ul, that is appended to todoSection
