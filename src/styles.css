@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Imperial+Script&family=Monoton&family=Oxanium:wght@200..800&family=Train+One&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
-  --main-bg-color: rgb(254, 249, 225);
-  --main-content-color: rgb(163, 29, 29);
-  --main-todos-color: rgb(254, 249, 225);
-  --main-font-color: rgb(229, 208, 172);
-  --main-header-color: rgb(109, 35, 35);
-  --color-one: #A143DE;
+  --main-bg-color: rgb(255, 205, 178);
+  --main-content-color: rgb(216, 64, 64);
+  --main-font-color: white;
+  --main-header-color: rgb(142, 22, 22);
+  --main-project-color: rgb(238, 238, 238);
   --color-two: #DB7337;
   --color-three: #DB7876;
   --main-font: 'Oxanium', sans-serif;
@@ -31,7 +30,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-color: var(--main-font-color);
+  background-color: var(--main-bg-color);
 }
 
 .container {
@@ -49,6 +48,7 @@ body {
   color: var(--main-font-color);
   grid-area: 1 / 1 / 5 / 2;
   display: grid;
+  justify-items: start;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 2fr 2fr;
 }
@@ -59,16 +59,17 @@ body {
   width: 170px;
 }
 
-.nav div {
+.nav-div {
   width: 100%;
+  
 }
 
-.nav div div {
-  margin-top: 10px;
+
+.nav-button {
+  margin: 10px auto auto 80px;
   display: flex;
   gap: 20px;
   align-items: center;
-  justify-content: center;
 }
 
 .add {
@@ -117,39 +118,47 @@ header h1 {
 }
 
 .todo-section {
-  background-color: var(--main-font-color);
-  display: grid;
+  background-color: var(--main-bg-color);
   grid-area: 2 / 2 / 5 / 5;
-  grid-auto-rows: 1fr;
-  grid-template-columns: 1fr;
   justify-items: center;
-  align-items: start;
+}
+
+.delete-btn {
+  width: 100px;
+  align-self: center;
+  height: 40px;
+  order: 1;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--main-content-color);
+  color: var(--main-font-color);
+  padding: 10px;
+  margin-right: 10px;
 }
 
 .card {
   cursor: pointer;
   background-color: var(--main-font-color);
-  color: black;
+  color: white;
   width: 90%;
-  height: 4rem;
+  height: 5rem;
   justify-self: center;
-  align-self: center;
   border-radius: 20px;
-  text-align: center;
   margin: 10px;
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
+  align-self: center;
+  padding: 20px;
+  font-size: 1.5rem;
 }
 
-.card:hover {
-  background-color: var(--main-bg-color);
-  transform: translateY(5px);
-  height: 8rem;
-  text-overflow: none;
+li.card:hover {
+  background-color: black;
 }
 
 .show {
   height: 300px;
+  color: red;
 }
 
 .card > * p {
@@ -157,20 +166,22 @@ header h1 {
   width: 100px;
 }
 
-.card > *:last-child {
+/* .card > *:last-child {
   margin-right: 10px;
-}
+} */
 
 .project {
-  background-color: var(--color-three);
+  background-color: var(--main-project-color);
   width: 90%;
-  color: var(--main-font-color);
+  color: black;
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 20px 20px 50px 15px grey;
+  display: flex;
+  flex-direction: column;
 }
 
-ul::first-line {
+.project::first-letter {
   font-size: 2rem;
 }
 .mark-todo {
