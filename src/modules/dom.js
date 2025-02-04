@@ -1,7 +1,6 @@
 import { todoSection, projectInterval } from "../index";
-import { Project } from "./project";
 import { Todo } from "./todo";
-import { getLocalStorage, retrieveFromLocalStorage } from "./localStorage"
+import { getLocalStorage } from "./localStorage"
 
 const addTodo = document.querySelector('.todo-add');
 const addProject = document.querySelector('.project-add');
@@ -21,7 +20,7 @@ export function createTodoCard(todo, project) {
   //a todo
   const projectName = todo.project;
   console.log(projectName)
-  const selectProject = document.querySelector(".project")
+  const selectProject = document.querySelector(`.${project}`)
   if (project.textContent === selectProject) {
     console.log("It's equal");
   } else {
@@ -73,16 +72,16 @@ export function createTodoCard(todo, project) {
   todoItem.appendChild(paraDescription);
   todoItem.appendChild(divDatePriority);
 
-  getLocalStorage(todo, projectName);
+  getLocalStorage(todo, todo.project);
 }
 
 //Create a project, that is a ul, that is appended to todoSection
 export function createProjectSection(projectname) {
-  const existingProject = document.querySelector(`.${projectname}`);
-  if (existingProject) {
-    console.log(`Project '${projectname}' already exists.`);
-    return existingProject;
-  }
+  // const existingProject = document.querySelector(`.${projectname}`);
+  // if (existingProject) {
+  //   console.log(`Project '${projectname}' already exists.`);
+  //   return existingProject;
+  // }
 
   const project = projectname;
   console.log(project)
@@ -137,16 +136,12 @@ export function manipulateInputData () {
   const date = todoForm.date.value;
   const priority = selectRadioBtn();
   const select = todoForm.select.value;
-  console.log(select);  
 
   const arr = [title, description, date, priority, select];
-  console.log(arr);
 
   const todo = new Todo(arr[0], arr[1], arr[2], arr[3], arr[4]);
   localStorage.setItem(`todo ${title}`, arr);
-  const project = select;
-  createTodoCard(todo, project);
-  createProjectSection(project)
+  createTodoCard(todo, todo.project);
 }
 
 //Select the radio buttons that indicates a priority of the todo
@@ -167,17 +162,11 @@ function submitProject () {
    return name;
 }
 
-function populateDivs(todos, project) {
-  console.log(project[0])
-  for (let i = 0; i < todos.length; i++) {
-      createTodoCard(todos[i], `${project[0]}`);
-  }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  populateDivs(todos, projects);
-});
-
+// function populateDivs(todos, project) {
+//   for (let i = 0; i < todos.length; i++) {
+//       createTodoCard(todos[i], `${todos[i].project}`);
+//   }
+// }
 //Click to expand todo
 const cards = document.querySelectorAll(".card");
 
