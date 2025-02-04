@@ -12,8 +12,6 @@ const submitBtn = document.querySelector("#submit");
 const submitBtnProject = document.querySelector("#submit-project");
 const todoForm = document.querySelector("#todo-form");
 
-
-
 export function createTodoCard(todo, project) {
   
   //Select the proper section of the project you want to add a todo, and then adds
@@ -21,11 +19,6 @@ export function createTodoCard(todo, project) {
   const projectName = todo.project;
   console.log(projectName)
   const selectProject = document.querySelector(`.${project}`)
-  if (project.textContent === selectProject) {
-    console.log("It's equal");
-  } else {
-    console.log('do nothing');
-  }
   const todoItem = document.createElement("li");
   todoItem.classList.add("card");
   selectProject.appendChild(todoItem);
@@ -72,7 +65,22 @@ export function createTodoCard(todo, project) {
   todoItem.appendChild(paraDescription);
   todoItem.appendChild(divDatePriority);
 
+  const button = document.createElement("button");
+  button.textContent = "Delete";
+  todoItem.appendChild(button);
+  button.classList.add("delete-btn")
+
+  colorPriority(todoItem, todo.priority)
   getLocalStorage(todo, todo.project);
+}
+
+// Delete the project of DOM
+const deleteProject = (project) => {
+
+ if (confirm(`Do you really want to remove ${project}?`)) {
+   document.querySelector(`.${project}`).remove();
+   localStorage.removeItem(`project_${project}`);
+ } 
 }
 
 //Create a project, that is a ul, that is appended to todoSection
@@ -84,13 +92,21 @@ export function createProjectSection(projectname) {
   // }
 
   const project = projectname;
-  console.log(project)
   const ul = document.createElement("ul");
   ul.classList.add(`${projectname}`);
   ul.classList.add('project');
   todoSection.appendChild(ul);
   ul.innerHTML = `${project}`;
   projectInterval(projectname);
+
+  const button = document.createElement("button");
+  button.textContent = `Delete
+  Project`;
+  // button.classList.add("delete-btn");
+  // button.addEventListener("click", () => {
+  //   deleteProject(project)
+  // })
+  // ul.append(button)
   return project;  
 }
 
@@ -152,7 +168,6 @@ function selectRadioBtn () {
     if (radio[i].checked) {
       radioValue = radio[i].value;
     }
-    console.log(radioValue);
   }
   return radioValue;
 }
@@ -167,11 +182,26 @@ function submitProject () {
 //       createTodoCard(todos[i], `${todos[i].project}`);
 //   }
 // }
-//Click to expand todo
-const cards = document.querySelectorAll(".card");
 
-cards.forEach((card) => {
-  card.addEventListener("click", () => {
-    card.classList.toggle("show");
-  })
-})
+// Change the color of priority
+function colorPriority(todo, priority) {
+  console.log(priority)
+  if (priority === 'High') {
+    todo.style.cssText = "background-color: rgb(206, 64, 64);"
+  } else if (priority === 'Medium') {
+    todo.style.cssText = "background-color: rgb(248, 203, 68);"
+  } else if (priority === 'Low') {
+    todo.style.cssText = "background-color: rgb(72, 185, 38);"
+  }
+}
+
+// const cards = document.getElementsByTagName('li');
+// console.log(cards);
+
+// cards.forEach((card) => {
+//   card.addEventListener("click", () => {
+//     console.log("click")
+//     card.classList.toggle("show")
+//   })
+// })
+
