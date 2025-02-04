@@ -1,9 +1,11 @@
 "use strict";
 
 import "./styles.css";
-// import { Todo } from "./modules/todo.js"
-// import { createTodoCard, createProjectSection } from "./modules/dom.js";
 import { retrieveFromLocalStorage } from "./modules/localStorage.js"
+import { completeSection, completed } from "./modules/finishTodo.js";
+
+const home = document.querySelector(".home");
+
 
 document.addEventListener("DOMContentLoaded", () => {
   retrieveFromLocalStorage();
@@ -18,14 +20,11 @@ export function projectInterval (projectname) {
   select.appendChild(option);
 }
 
+completed.addEventListener("click", () => {
+  console.log("clicked")
+  completeSection();
+});
 
-
-/* Processos
-
-1 - A lógica da criação dos todos //Feita
-2 - Criação da interface //Feito
-3 - Manipulação do Dom //Quase completa
-4 - localStorage WEB Api //Ainda não
-5 - datefns (Fazer com que apareça no todo o tempo que falta para ser concluiído) //Ainda não
-6 - consertar todo para to do //Quase
-*/
+home.addEventListener("click", () =>{
+  todoSection.style.display = "initial";
+})
