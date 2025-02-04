@@ -2,10 +2,9 @@
 
 import "./styles.css";
 import { retrieveFromLocalStorage } from "./modules/localStorage.js"
-import { completeSection, completed } from "./modules/finishTodo.js";
+import { completeSection, completed, extractTodoInfo } from "./modules/finishTodo.js";
 
 const home = document.querySelector(".home");
-
 
 document.addEventListener("DOMContentLoaded", () => {
   retrieveFromLocalStorage();
@@ -26,5 +25,10 @@ completed.addEventListener("click", () => {
 });
 
 home.addEventListener("click", () =>{
-  todoSection.style.display = "initial";
-})
+  if (todoSection.innerHTML = "Completed") {
+    todoSection.innerHTML = "";
+    retrieveFromLocalStorage(); 
+  } else {
+    console.log("nothing")
+  }
+});
