@@ -11,21 +11,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 export const todoSection = document.querySelector(".todo-section");
 
-const todo1 = new Todo("Wash dishes", "Wash dishes from the yesterday dinner", "30-01-2025", "High");
-const todo2 = new Todo(
-  "Study Plato",
-  "Read Book II of Laws",
-  "03-02-2025",
-  "Medium"
-);
-const todo3 = new Todo("Market", "Go to market", "05-02-2025", "High");
+// const todo1 = new Todo("Wash dishes", "Wash dishes from the yesterday dinner", "30-01-2025", "High");
+// const todo2 = new Todo(
+//   "Study Plato",
+//   "Read Book II of Laws",
+//   "03-02-2025",
+//   "Medium"
+// );
+// const todo3 = new Todo("Market", "Go to market", "05-02-2025", "High");
 
-createProjectSection('Default');
-createProjectSection('Completed'); 
+// createProjectSection('Default');
+// createProjectSection('Completed'); 
 
-createTodoCard(todo1, 'Default');
-createTodoCard(todo2, 'Default');
-createTodoCard(todo3, 'Default');
+// createTodoCard(todo1, 'Default');
+// createTodoCard(todo2, 'Default');
+// createTodoCard(todo3, 'Default');
 
 export function projectInterval (projectname) {
   const select = document.querySelector("#select-project");
