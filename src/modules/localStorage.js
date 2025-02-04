@@ -5,12 +5,12 @@ export function getLocalStorage(todo, project) {
   // Store the todo object with a unique key
   const todoKey = `todo_${todo.title}`; // Use a unique key for each todo
   localStorage.setItem(todoKey, JSON.stringify(todo));
-  console.log(`Todo "${todo.title}" saved to localStorage.`);
+//   console.log(`Todo "${todo.title}" saved to localStorage.`);
 
   // Store the project name
   const projectKey = `project_${project}`; // Use a unique key for each project
   localStorage.setItem(projectKey, project);
-  console.log(`Project "${project}" saved to localStorage.`);
+//   console.log(`Project "${project}" saved to localStorage.`);
 }
 
 export function retrieveFromLocalStorage() {
@@ -34,20 +34,23 @@ export function retrieveFromLocalStorage() {
 
   // Remove duplicates from the array
   const noDuplicate = Array.from(new Set(projects));
+  console.log(noDuplicate)
   const noDuplicateTodo = Array.from(new Set(todos));
 
   // Iterate over the projects to create them in the DOM
-//   function createReturnProject(arr) {
     for (let i = 0; i < noDuplicate.length; i++) {
       createProjectSection(noDuplicate[i]);
     }
-//     return arr;
-//   }
 
   // Iterate over the todos to create them based on the current pro
   function createReturnTodo(arr) {
     for (let i = 0; i < arr.length; i++) {
-      createTodoCard(arr[i], arr[i].project);
+        // Sees if property project of todo exists in projects array, if not, create todo in default section
+        if (noDuplicate.includes(arr[i].project)) {
+          createTodoCard(arr[i], arr[i].project);
+      } else {
+          createTodoCard(arr[i], 'Default');
+      }
     }
   }
 
@@ -56,7 +59,3 @@ export function retrieveFromLocalStorage() {
 
   return { todos, projects };
 }
-
-// Função de pegar data funcionará em dois lugares
-//1 - Create Card
-//2- Create project
