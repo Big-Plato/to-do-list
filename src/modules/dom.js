@@ -13,14 +13,20 @@ const submitBtn = document.querySelector("#submit");
 const submitBtnProject = document.querySelector("#submit-project");
 const todoForm = document.querySelector("#todo-form");
 
+
+
 export function createTodoCard(todo, project) {
   
   //Select the proper section of the project you want to add a todo, and then adds
   //a todo
-  const projectSection = createProjectSection(project);
-  const selectProject = document.querySelector(`.${project}`);
-
-  console.log(selectProject);
+  const projectName = todo.project;
+  console.log(projectName)
+  const selectProject = document.querySelector(".project")
+  if (project.textContent === selectProject) {
+    console.log("It's equal");
+  } else {
+    console.log('do nothing');
+  }
   const todoItem = document.createElement("li");
   todoItem.classList.add("card");
   selectProject.appendChild(todoItem);
@@ -67,9 +73,7 @@ export function createTodoCard(todo, project) {
   todoItem.appendChild(paraDescription);
   todoItem.appendChild(divDatePriority);
 
-  getLocalStorage(todo, project);
-
-
+  getLocalStorage(todo, projectName);
 }
 
 //Create a project, that is a ul, that is appended to todoSection
@@ -79,8 +83,6 @@ export function createProjectSection(projectname) {
     console.log(`Project '${projectname}' already exists.`);
     return existingProject;
   }
-
-
 
   const project = projectname;
   console.log(project)
@@ -140,10 +142,11 @@ export function manipulateInputData () {
   const arr = [title, description, date, priority, select];
   console.log(arr);
 
-  const todo = new Todo(arr[0], arr[1], arr[2], arr[3]);
+  const todo = new Todo(arr[0], arr[1], arr[2], arr[3], arr[4]);
   localStorage.setItem(`todo ${title}`, arr);
   const project = select;
   createTodoCard(todo, project);
+  createProjectSection(project)
 }
 
 //Select the radio buttons that indicates a priority of the todo
