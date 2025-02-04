@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Imperial+Script&family=Monoton&family=Oxanium:wght@200..800&family=Train+One&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Imperial+Script&family=Monoton&family=Oxanium:wght@200..800&family=Train+One&family=Volkhov:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 :root {
   --main-bg-color: rgb(255, 205, 178);
@@ -6,19 +6,9 @@
   --main-font-color: white;
   --main-header-color: rgb(142, 22, 22);
   --main-project-color: rgb(238, 238, 238);
-  --color-two: #DB7337;
-  --color-three: #DB7876;
-  --main-font: 'Oxanium', sans-serif;
-
-  /* --main-bg-color: #DB3790;
-  --main-content-color: #DB5637;
-  --main-todos-color: #DB3A37;
-  --main-font-color: #FFFFFF;
-  --main-header-color: #DB7337;
-  --color-one: #A143DE;
-  --color-two: #DB7337;
-  --color-three: #DB7876;
-  --main-font: 'Oxanium', sans-serif; */
+  --color-two: #db7337;
+  --color-three: #db7876;
+  --main-font: "Oxanium", sans-serif;
 }
 
 * {
@@ -61,9 +51,7 @@ body {
 
 .nav-div {
   width: 100%;
-  
 }
-
 
 .nav-button {
   margin: 10px auto auto 80px;
@@ -75,12 +63,15 @@ body {
 .add {
   width: 50px;
   height: 50px;
-  filter: invert(99%) sepia(33%) saturate(0%) hue-rotate(46deg) brightness(102%) contrast(100%);
+  filter: invert(99%) sepia(33%) saturate(0%) hue-rotate(46deg) brightness(102%)
+    contrast(100%);
   cursor: pointer;
 }
 
 .add:hover {
-  filter: invert(78%) sepia(11%) saturate(4011%) hue-rotate(307deg) brightness(92%) contrast(85%);}
+  filter: invert(78%) sepia(11%) saturate(4011%) hue-rotate(307deg)
+    brightness(92%) contrast(85%);
+}
 
 .nav ul {
   grid-row: 2 / 3;
@@ -105,7 +96,7 @@ header {
   grid-area: 1 / 2 / 1 / 5;
   background-color: var(--main-header-color);
   width: 100%;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -130,10 +121,16 @@ header h1 {
   order: 1;
   border: none;
   border-radius: 10px;
-  background-color: var(--main-content-color);
-  color: var(--main-font-color);
+  background-color: white;
+  color: var(--main-header-color);
   padding: 10px;
+  cursor: pointer;
   margin-right: 10px;
+}
+
+.delete-btn:hover {
+  background-color: var(--main-header-color);
+  color: white;
 }
 
 .card {
@@ -149,16 +146,14 @@ header h1 {
   gap: 10px;
   align-self: center;
   padding: 20px;
-  font-size: 1.5rem;
-}
-
-li.card:hover {
-  background-color: black;
+  font-size: 1.2rem;
 }
 
 .show {
-  height: 300px;
-  color: red;
+  height: 200px;
+  text-overflow:unset;
+  overflow: visible;
+  
 }
 
 .card > * p {
@@ -166,11 +161,8 @@ li.card:hover {
   width: 100px;
 }
 
-/* .card > *:last-child {
-  margin-right: 10px;
-} */
-
 .project {
+  margin-top: 10px;
   background-color: var(--main-project-color);
   width: 90%;
   color: black;
@@ -185,7 +177,7 @@ li.card:hover {
   font-size: 2rem;
 }
 .mark-todo {
-  width:1.5rem;
+  width: 1.5rem;
   background-color: black;
 }
 
@@ -208,10 +200,9 @@ li.card:hover {
   width: 200px;
 }
 
-.card  {
+.card {
   padding: 0;
 }
-
 
 dialog > * {
   margin: 5px;
@@ -236,7 +227,8 @@ fieldset {
   justify-content: center;
 }
 
-#submit, #submit-project {
+#submit,
+#submit-project {
   background-color: var(--color-two);
   border: none;
   border-radius: 10px;
