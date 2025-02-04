@@ -1,6 +1,12 @@
-// const completed = document.querySelector(".finish");
+import { todoSection } from "../index";
 
-// completed.addEventListener("click", () => {
+export const completed = document.querySelector(".finish");
+
+
+export function completeSection () {
+    todoSection.style.display = "none";   
+}
+
+export function completeTodo () {
     
-// })
-
+}
