@@ -88,7 +88,7 @@ export function createTodoCard(todo, project) {
   inputCheck.addEventListener("click", () => {
     if (inputCheck.checked) {
       todoItem.style.cssText =
-        "text-decoration: line-through; background-color: black; height: 5rem" ;
+        "text-decoration: line-through; background-color: black; height: 5rfuem" ;
     } else {
       todoItem.style.cssText = "text-decoration: none;";
       colorPriority(todoItem, todo.priority);

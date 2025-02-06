@@ -1,16 +1,16 @@
 import { createProjectSection } from "./dom";
 import { createTodoCard } from "./dom";
 
-export function getLocalStorage(todo, project) {
+export function getLocalStorage(todo) {
   // Store the todo object with a unique key
   const todoKey = `todo_${todo.title}`; // Use a unique key for each todo
   localStorage.setItem(todoKey, JSON.stringify(todo));
-//   console.log(`Todo "${todo.title}" saved to localStorage.`);
+  //   console.log(`Todo "${todo.title}" saved to localStorage.`);
 
   // Store the project name
-  const projectKey = `project_${project}`; // Use a unique key for each project
-  localStorage.setItem(projectKey, project);
-//   console.log(`Project "${project}" saved to localStorage.`);
+  const projectKey = `project_${todo.project}`; // Use a unique key for each project
+  localStorage.setItem(projectKey, todo.project);
+  //   console.log(`Project "${project}" saved to localStorage.`);
 }
 
 export function retrieveFromLocalStorage() {
@@ -22,7 +22,9 @@ export function retrieveFromLocalStorage() {
 
     if (key.startsWith("todo_")) {
       const todoString = localStorage.getItem(key);
+      console.log(todoString)
       const todo = JSON.parse(todoString);
+      console.log(todo)
       todos.push(todo);
     }
 
@@ -34,27 +36,27 @@ export function retrieveFromLocalStorage() {
 
   // Remove duplicates from the array
   const noDuplicate = Array.from(new Set(projects));
-  console.log(noDuplicate)
+  console.log(noDuplicate);
   const noDuplicateTodo = Array.from(new Set(todos));
 
   // Iterate over the projects to create them in the DOM
-    for (let i = 0; i < noDuplicate.length; i++) {
-      createProjectSection(noDuplicate[i]);
-    }
+  for (let i = 0; i < noDuplicate.length; i++) {
+    createProjectSection(noDuplicate[i]);
+  }
 
   // Iterate over the todos to create them based on the current pro
   function createReturnTodo(arr) {
     for (let i = 0; i < arr.length; i++) {
-        // Sees if property project of todo exists in projects array, if not, create todo in default section
-        if (noDuplicate.includes(arr[i].project)) {
-          createTodoCard(arr[i], arr[i].project);
+      // Sees if property project of todo exists in projects array, if not, create todo in default section
+      if (noDuplicate.includes(arr[i].project)) {
+        createTodoCard(arr[i], arr[i].project);
       } else {
-          createTodoCard(arr[i], 'Default');
+        createTodoCard(arr[i], "Default");
       }
     }
   }
 
-//   createReturnProject(noDuplicate);
+  //   createReturnProject(noDuplicate);
   createReturnTodo(noDuplicateTodo);
 
   return { todos, projects };
