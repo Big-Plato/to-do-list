@@ -151,9 +151,8 @@ header h1 {
 
 .show {
   height: 200px;
-  text-overflow:unset;
+  text-overflow: unset;
   overflow: visible;
-  
 }
 
 .card > * p {
