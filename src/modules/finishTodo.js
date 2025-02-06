@@ -1,5 +1,4 @@
 import { todoSection } from "../index";
-import { createProjectSection } from "./dom";
 
 export const completed = document.querySelector(".finish");
 
