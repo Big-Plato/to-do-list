@@ -1,83 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-do or not To-do</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-do or not To-do</title>
-</head>
+  <body>
+    <div class="container">
+      <nav class="nav">
+        <img class="plato" src="assets/plato-idea.svg" />
+        <div class="nav-div">
+          <div class="nav-button">
+            <img class="add home" src="./assets/home.svg" />
+            <h3>Home</h3>
+          </div>
+          <div class="nav-button">
+            <img class="add todo-add" src="./assets/add.svg" />
+            <h3>Add To-do</h3>
+          </div>
+          <div class="nav-button">
+            <img class="add project-add" src="./assets/project.svg" />
+            <h3>Add Project</h3>
+          </div>
+          <div class="nav-button">
+            <img class="add finish" src="./assets/finish.svg" />
+            <h3>Completed</h3>
+          </div>
+        </div>
+      </nav>
 
-<body>
-  <div class="container">
-    <nav class="nav">
-      <img class="plato" src="assets/plato-idea.svg">
-      <div class="nav-div">
-        <div class="nav-button">
-          <img class="add home" src="./assets/home.svg">
-          <h3>Home</h3>
-        </div>
-        <div class="nav-button">
-          <img class="add todo-add" src="./assets/add.svg">
-          <h3>Add To-do</h3>
-        </div>
-        <div class="nav-button">
-          <img class="add project-add" src="./assets/project.svg">
-          <h3>Add Project</h3>
-        </div>
-        <div class="nav-button">
-          <img class="add finish" src="./assets/finish.svg">
-          <h3>Completed</h3>
-        </div>
-      </div>
-    </nav>
-
-    <header>
-      <h1>To-do or not to-do?</h1>
-    </header>
-    <div class="todo-section">
+      <header>
+        <h1>To-do or not to-do?</h1>
+      </header>
+      <div class="todo-section"></div>
     </div>
-    
-  </div>
 
-  <dialog id="dialog-todo">
-    <button id="close">X</button>
-    <legend>Fill the informations below to add a to-do</legend>
-    <form id="todo-form">
-      <fieldset>
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" maxlength="50" placeholder="To-do">
-        <label for="description">Description</label>
-        <input type="text" name="description" id="description" maxlength="50" placeholder="Description">
-        <label for="date">Date</label>
-        <input type="date" name="date" id="date">
+    <dialog id="dialog-todo">
+      <button id="close">X</button>
+      <legend>Fill the informations below to add a to-do</legend>
+      <form id="todo-form">
+        <fieldset>
+          <label for="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            maxlength="50"
+            placeholder="To-do"
+          />
+          <label for="description">Description</label>
+          <input
+            type="text"
+            name="description"
+            id="description"
+            maxlength="50"
+            placeholder="Description"
+          />
+          <label for="date">Date</label>
+          <input type="date" name="date" id="date" />
+        </fieldset>
+        <fieldset id="options">
+          <label for="low">Low</label>
+          <input id="low" name="option" value="Low" type="radio" />
+          <label for="medium">Medium</label>
+          <input
+            id="medium"
+            name="option"
+            value="Medium"
+            type="radio"
+            checked
+          />
+          <label for="high">High</label>
+          <input id="high" name="option" value="High" type="radio" />
+        </fieldset>
+        <fieldset>
+          <label>Project</label>
+          <select name="select" id="select-project"></select>
+        </fieldset>
+        <button id="submit" type="submit">Add To-do</button>
+      </form>
+    </dialog>
+
+    <dialog id="dialog-project">
+      <fieldset id="field-project">
+        <button id="close-project">X</button>
+        <label for="name">Project Name</label>
+        <input id="project-name" name="project" type="text" />
+        <button id="submit-project">Add Project</button>
       </fieldset>
-      <fieldset id="options">
-        <label for="low">Low</label>
-        <input id="low" name="option" value="Low" type="radio">
-        <label for="medium">Medium</label>
-        <input id="medium" name="option" value="Medium" type="radio" checked>
-        <label for="high">High</label>
-        <input id="high" name="option" value="High" type="radio">
-      </fieldset>
-      <fieldset>
-        <label>Project</label>
-        <select name="select" id="select-project">
-
-        </select>
-      </fieldset>
-      <button id="submit" type="submit">Add To-do</button>
-    </form>
-  </dialog>
-
-  <dialog id="dialog-project">
-    <fieldset id="field-project">
-    <button id="close-project">X</button>
-    <label for="name">Project Name</label>
-    <input id="project-name" name="project" type="text">
-    <button id="submit-project">Add Project</button>
-  </fieldset>
-  </dialog>
-
-</body>
-
+    </dialog>
+  </body>
 </html>
