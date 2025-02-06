@@ -1,18 +1,21 @@
 "use strict";
 
 import "./styles.css";
-import { retrieveFromLocalStorage } from "./modules/localStorage.js"
-import { completeSection, completed, extractTodoInfo } from "./modules/finishTodo.js";
+import { retrieveFromLocalStorage } from "./modules/localStorage.js";
+import {
+  completeSection,
+  completed,
+} from "./modules/finishTodo.js";
 
 const home = document.querySelector(".home");
 
 document.addEventListener("DOMContentLoaded", () => {
   retrieveFromLocalStorage();
-})
+});
 
 export const todoSection = document.querySelector(".todo-section");
 
-export function projectInterval (projectname) {
+export function projectInterval(projectname) {
   const select = document.querySelector("#select-project");
   const option = document.createElement("option");
   option.textContent = projectname;
@@ -20,15 +23,15 @@ export function projectInterval (projectname) {
 }
 
 completed.addEventListener("click", () => {
-  console.log("clicked")
+  console.log("clicked");
   completeSection();
 });
 
-home.addEventListener("click", () =>{
-  if (todoSection.innerHTML = "Completed") {
+home.addEventListener("click", () => {
+  if ((todoSection.innerHTML = "Completed")) {
     todoSection.innerHTML = "";
-    retrieveFromLocalStorage(); 
+    retrieveFromLocalStorage();
   } else {
-    console.log("nothing")
+    console.log("nothing");
   }
 });
