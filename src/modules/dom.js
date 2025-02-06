@@ -88,7 +88,7 @@ export function createTodoCard(todo, project) {
   inputCheck.addEventListener("click", () => {
     if (inputCheck.checked) {
       todoItem.style.cssText =
-        "text-decoration: line-through; background-color: black;";
+        "text-decoration: line-through; background-color: black; height: 5rem" ;
     } else {
       todoItem.style.cssText = "text-decoration: none;";
       colorPriority(todoItem, todo.priority);
@@ -99,7 +99,7 @@ export function createTodoCard(todo, project) {
 // Delete the project of DOM and localStorage
 const deleteProject = (project) => {
   const projectHasChild = document.querySelector(`.${project}`);
-  console.log(projectHasChild)
+  console.log(projectHasChild);
   for (let i = 0; i < projectHasChild.length; i++) {
     console.log(projectHasChild[i]);
   }
@@ -130,7 +130,7 @@ export function createProjectSection(projectname) {
   button.textContent = `Delete
   Project`;
   button.classList.add("delete-btn");
-  button.style.cssText = "width: 200px;"
+  button.style.cssText = "width: 200px;";
   button.addEventListener("click", () => {
     deleteProject(project);
   });
