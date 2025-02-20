@@ -1,6 +1,6 @@
 import { todoSection, projectInterval } from "../index";
 import { Todo } from "./todo";
-import { getLocalStorage, retrieveFromLocalStorage } from "./localStorage";
+import { getLocalStorage } from "./localStorage";
 
 const addTodo = document.querySelector(".todo-add");
 const addProject = document.querySelector(".project-add");
@@ -23,7 +23,7 @@ export function createTodoCard(todo, project) {
   const inputCheck = document.createElement("input");
   inputCheck.classList.add("mark-todo");
 
-  //Check that will be used in future to finish a todo
+  //Check to finish a todo
 
   inputCheck.setAttribute("type", "checkbox");
   const paraTitle = document.createElement("p");
@@ -72,7 +72,7 @@ export function createTodoCard(todo, project) {
 
   const button = document.createElement("button");
   button.textContent = "Delete";
-  todoItem.appendChild(button);
+  todoItem.append(button);
   button.classList.add("delete-btn");
 
   button.addEventListener("click", () => {
@@ -88,7 +88,7 @@ export function createTodoCard(todo, project) {
   inputCheck.addEventListener("click", () => {
     if (inputCheck.checked) {
       todoItem.style.cssText =
-        "text-decoration: line-through; background-color: black; height: 5rfuem" ;
+        "text-decoration: line-through; background-color: black; height: 5rem" ;
     } else {
       todoItem.style.cssText = "text-decoration: none;";
       colorPriority(todoItem, todo.priority);
@@ -99,9 +99,7 @@ export function createTodoCard(todo, project) {
 // Delete the project of DOM and localStorage
 const deleteProject = (project) => {
   const projectHasChild = document.querySelector(`.${project}`);
-  console.log(projectHasChild);
   for (let i = 0; i < projectHasChild.length; i++) {
-    console.log(projectHasChild[i]);
   }
   if (confirm(`Do you really want to remove ${project}?`)) {
     document.querySelector(`.${project}`).remove();
@@ -112,11 +110,11 @@ const deleteProject = (project) => {
 
 //Create a project, that is a ul, that is appended to todoSection
 export function createProjectSection(projectname) {
-  // const existingProject = document.querySelector(`.${projectname}`);
-  // if (existingProject) {
-  //   console.log(`Project '${projectname}' already exists.`);
-  //   return existingProject;
-  // }
+  const existingProject = document.querySelector(`.${projectname}`);
+  if (existingProject) {
+    console.log(`Project '${projectname}' already exists.`);
+    return existingProject;
+  }
 
   const project = projectname;
   const ul = document.createElement("ul");
@@ -203,12 +201,6 @@ function submitProject() {
   const name = document.querySelector("#project-name").value;
   return name;
 }
-
-// function populateDivs(todos, project) {
-//   for (let i = 0; i < todos.length; i++) {
-//       createTodoCard(todos[i], `${todos[i].project}`);
-//   }
-// }
 
 // Change the color of priority
 function colorPriority(todo, priority) {
