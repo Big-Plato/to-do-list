@@ -138,11 +138,10 @@ header h1 {
 
 .card {
   cursor: pointer;
-  background-color: var(--main-font-color);
   color: white;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 90%;
-  height: 5rem;
+  height: auto;
   justify-self: center;
   border-radius: 20px;
   margin: 10px;
@@ -161,7 +160,6 @@ header h1 {
 
 .card > * p {
   margin: auto;
-  width: 100px;
 }
 
 .project {
@@ -193,17 +191,16 @@ header h1 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 150px;
+}
+
+footer {
+  align-self: flex-end;
+  justify-self: flex-end;
 }
 
 .divDatePriority {
-  display: flex;
-  gap: 50px;
-  width: 3rem;
-}
-
-.card {
-  padding: 0;
+  text-align: center;
+  margin: auto;
 }
 
 dialog > * {
@@ -293,6 +290,14 @@ dialog::backdrop {
   .card:active {
     display: flex;
     flex-direction: column;
+  }
+  .card p {
+    font-size: 1rem;
+    display: flex;
+  }
+  .delete-btn {
+    width: 50px;
+    font-size: 0.8rem;
   }
   #dialog-todo > * {
     width: 100%;
