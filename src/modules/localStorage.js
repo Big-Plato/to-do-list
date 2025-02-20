@@ -5,12 +5,11 @@ export function getLocalStorage(todo) {
   // Store the todo object with a unique key
   const todoKey = `todo_${todo.title}`; // Use a unique key for each todo
   localStorage.setItem(todoKey, JSON.stringify(todo));
-  //   console.log(`Todo "${todo.title}" saved to localStorage.`);
-
+  // Cretes default section
+  localStorage.setItem("project_Default", "Default")
   // Store the project name
   const projectKey = `project_${todo.project}`; // Use a unique key for each project
   localStorage.setItem(projectKey, todo.project);
-  //   console.log(`Project "${project}" saved to localStorage.`);
 }
 
 export function retrieveFromLocalStorage() {
@@ -22,9 +21,7 @@ export function retrieveFromLocalStorage() {
 
     if (key.startsWith("todo_")) {
       const todoString = localStorage.getItem(key);
-      console.log(todoString)
       const todo = JSON.parse(todoString);
-      console.log(todo)
       todos.push(todo);
     }
 
@@ -36,9 +33,9 @@ export function retrieveFromLocalStorage() {
 
   // Remove duplicates from the array
   const noDuplicate = Array.from(new Set(projects));
-  console.log(noDuplicate);
   const noDuplicateTodo = Array.from(new Set(todos));
 
+  noDuplicate.push("Default");
   // Iterate over the projects to create them in the DOM
   for (let i = 0; i < noDuplicate.length; i++) {
     createProjectSection(noDuplicate[i]);
@@ -48,6 +45,8 @@ export function retrieveFromLocalStorage() {
   function createReturnTodo(arr) {
     for (let i = 0; i < arr.length; i++) {
       // Sees if property project of todo exists in projects array, if not, create todo in default section
+      console.log("Projeto: ", arr[i].project)
+      console.log("Array Todo: ", arr[i])
       if (noDuplicate.includes(arr[i].project)) {
         createTodoCard(arr[i], arr[i].project);
       } else {
@@ -56,7 +55,6 @@ export function retrieveFromLocalStorage() {
     }
   }
 
-  //   createReturnProject(noDuplicate);
   createReturnTodo(noDuplicateTodo);
 
   return { todos, projects };
