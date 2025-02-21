@@ -1,6 +1,7 @@
 import { todoSection, projectInterval } from "../index";
 import { Todo } from "./todo";
 import { getLocalStorage } from "./localStorage";
+import { sendToCompleted } from "./finishTodo";
 
 const addTodo = document.querySelector(".todo-add");
 const addProject = document.querySelector(".project-add");
@@ -13,6 +14,7 @@ const submitBtnProject = document.querySelector("#submit-project");
 const todoForm = document.querySelector("#todo-form");
 
 export function createTodoCard(todo, project) {
+  console.log(todo)
   //Select the proper section of the project you want to add a todo, and then adds
   //a todo
   const selectProject = document.querySelector(`.${project}`);
@@ -85,11 +87,16 @@ export function createTodoCard(todo, project) {
   colorPriority(todoItem, todo.priority);
   getLocalStorage(todo, todo.project);
 
+  const checkDone = sendToCompleted(todoItem, todo);
+
   inputCheck.addEventListener("click", () => {
     if (inputCheck.checked) {
+      checkDone.send(todoItem);
       todoItem.style.cssText =
-        "text-decoration: line-through; background-color: black; height: 5rem" ;
-    } else {
+        "text-decoration: line-through; background-color: black; height: auto" ;
+        getLocalStorage(todo, "Completed");
+      } else {
+      checkDone.retrieve(todoItem);
       todoItem.style.cssText = "text-decoration: none;";
       colorPriority(todoItem, todo.priority);
     }
@@ -181,7 +188,6 @@ export function manipulateInputData() {
   const arr = [title, description, date, priority, select];
 
   const todo = new Todo(arr[0], arr[1], arr[2], arr[3], arr[4]);
-  localStorage.setItem(`todo ${title}`, arr);
   createTodoCard(todo, todo.project);
 }
 
