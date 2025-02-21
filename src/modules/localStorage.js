@@ -46,8 +46,6 @@ export function retrieveFromLocalStorage() {
   function createReturnTodo(arr) {
     for (let i = 0; i < arr.length; i++) {
       // Sees if property project of todo exists in projects array, if not, create todo in default section
-      console.log("Projeto: ", arr[i].project)
-      console.log("Array Todo: ", arr[i])
       if (noDuplicate.includes(arr[i].project)) {
         createTodoCard(arr[i], arr[i].project);
       } else {
