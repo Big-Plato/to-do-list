@@ -36,6 +36,7 @@ export function retrieveFromLocalStorage() {
   const noDuplicateTodo = Array.from(new Set(todos));
 
   noDuplicate.push("Default");
+  noDuplicate.push("Completed");
   // Iterate over the projects to create them in the DOM
   for (let i = 0; i < noDuplicate.length; i++) {
     createProjectSection(noDuplicate[i]);

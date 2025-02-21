@@ -22,11 +22,6 @@ export function projectInterval(projectname) {
   select.appendChild(option);
 }
 
-completed.addEventListener("click", () => {
-  console.log("clicked");
-  completeSection();
-});
-
 home.addEventListener("click", () => {
   if ((todoSection.innerHTML = "Completed")) {
     todoSection.innerHTML = "";
