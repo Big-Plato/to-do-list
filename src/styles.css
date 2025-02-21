@@ -139,7 +139,7 @@ header h1 {
 .card {
   cursor: pointer;
   color: white;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 90%;
   height: auto;
   justify-self: center;
@@ -156,10 +156,12 @@ header h1 {
   height: 200px;
   text-overflow: unset;
   overflow: visible;
+  flex-direction: column;
 }
 
-.card > * p {
+.card * p {
   margin: auto;
+  color: var(--main-font-color)
 }
 
 .project {
@@ -174,9 +176,6 @@ header h1 {
   flex-direction: column;
 }
 
-.project::first-letter {
-  font-size: 2rem;
-}
 .mark-todo {
   width: 1.5rem;
   background-color: black;
@@ -184,13 +183,15 @@ header h1 {
 
 .divTitle {
   display: flex;
-  gap: 5px;
+  margin:auto;
+  text-align: center;
 }
 
 .todoDescription {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  align-self: center;
 }
 
 footer {
