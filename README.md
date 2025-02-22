@@ -1,4 +1,5 @@
-<img style="margin: auto" width="335" alt="Screenshot_3" src="https://github.com/user-attachments/assets/afbce931-ca7c-4879-a46f-355dc76bcfba" />
+<p align="center"><img style="margin: auto" width="335" alt="Screenshot_3" src="https://github.com/user-attachments/assets/afbce931-ca7c-4879-a46f-355dc76bcfba" />
+</p>
 
 ## 🗒**To-do or not to-do**
 
