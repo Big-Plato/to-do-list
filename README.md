@@ -35,7 +35,7 @@ To install Project Title, follow these steps:
 
 ## ▶**Usage**
 
-To use Project Title, follow these steps:
+To use To-do or not to-do, follow these steps:
 
 1. Open the project in your favorite code editor.
 2. Modify the source code to fit your needs.
@@ -58,7 +58,7 @@ If you'd like to contribute to 'To-do or not to-do', here are some guidelines:
 
 ## 📖**License**
 
-Project Title is released under the MIT License. See the **[LICENSE](https://www.blackbox.ai/share/LICENSE)** file for details.
+To-do or not to-do is released under the MIT License. See the **[LICENSE](https://www.blackbox.ai/share/LICENSE)** file for details.
 
 ## 🙋**Authors and Acknowledgment**
 
