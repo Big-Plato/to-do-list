@@ -15,8 +15,8 @@ This app was a project made for the course of JavaScript by The Odin Project. An
 
 To install To-do or not to-do, follow these steps:
 
-1. Clone the repository: **`git clone https://github.com/username/project-title.git`**
-2. Navigate to the project directory: **`cd project-title`**
+1. Clone the repository: **`git clone https://github.com/Big-Plato/to-do-list.git`**
+2. Navigate to the project directory: **`cd to-do-list`**
 3. Install dependencies: **`npm install`**
 4. Build the project: **`npm run build`**
 5. Start the project: **`npm run dev`**
