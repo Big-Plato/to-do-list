@@ -13,7 +13,7 @@ This app was a project made for the course of JavaScript by The Odin Project. An
 
 ## 💻**Installation**
 
-To install Project Title, follow these steps:
+To install To-do or not to-do, follow these steps:
 
 1. Clone the repository: **`git clone https://github.com/username/project-title.git`**
 2. Navigate to the project directory: **`cd project-title`**
